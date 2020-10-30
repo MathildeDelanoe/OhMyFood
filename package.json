@@ -1,0 +1,19 @@
+{
+  "name": "mathildedelanoe_3_21102020",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./scss/style.scss:./css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MathildeDelanoe/MathildeDelanoe_3_21102020.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MathildeDelanoe/MathildeDelanoe_3_21102020/issues"
+  },
+  "homepage": "https://github.com/MathildeDelanoe/MathildeDelanoe_3_21102020#readme"
+}
