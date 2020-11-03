@@ -123,6 +123,7 @@ button {
   box-shadow: 5px 5px 5px #d2d2d2;
   border: none;
   cursor: pointer;
+  outline:none;
 }
 button:hover {
   opacity: 0.8;
