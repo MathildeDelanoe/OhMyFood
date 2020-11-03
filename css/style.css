@@ -232,22 +232,6 @@ h3 {
   }
 }
 
-@keyframes upMove {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-50px);
-  }
-}
-@keyframes changeColor {
-  from {
-    color: black;
-  }
-  to {
-    color: rgba(0, 0, 0, 0);
-  }
-}
 .vignettes {
   width: 90%;
   height: 230px;
@@ -294,6 +278,7 @@ h3 {
   width: 100%;
   height: 250px;
   margin-top: -70px;
+  -o-object-fit: cover;
   object-fit: cover;
   z-index: 2;
 }
@@ -343,21 +328,55 @@ h3 {
   z-index: 2;
 }
 .vignettes .info_restaurants .coeurVide:hover + .cache {
+  -webkit-animation: upMove 2s forwards;
   animation: upMove 2s forwards;
 }
 .vignettes .info_restaurants .coeurVide:hover {
+  -webkit-animation: changeColor 1s forwards;
   animation: changeColor 1s forwards;
 }
 .vignettes .info_restaurants .cache {
   height: 20px;
   width: 20px;
-  background-color: white;
+  background-color: red;
   position: absolute;
   right: 5%;
   top: 13px;
   z-index: 1;
 }
 
+@-webkit-keyframes upMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50px);
+  }
+}
+@keyframes upMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50px);
+  }
+}
+@-webkit-keyframes changeColor {
+  from {
+    color: black;
+  }
+  to {
+    color: rgba(0, 0, 0, 0);
+  }
+}
+@keyframes changeColor {
+  from {
+    color: black;
+  }
+  to {
+    color: rgba(0, 0, 0, 0);
+  }
+}
 /* image */
 .photo_pres {
   margin: 0;
@@ -372,12 +391,14 @@ h3 {
   .photo_pres img {
     height: 600px;
     margin-top: -200px;
+    -o-object-fit: cover;
     object-fit: cover;
   }
 }
 
 .photo_pres_note img {
   height: 250px;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 @media screen and (min-width: 1025px) {
@@ -398,6 +419,7 @@ a:first-child figure, a:nth-child(3) figure, a:nth-child(4) figure {
 a:first-child img, a:nth-child(3) img, a:nth-child(4) img {
   height: 230px;
   margin-top: -60px;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 @media screen and (min-width: 1025px) {
@@ -503,72 +525,123 @@ footer ul li i {
   overflow: hidden;
   cursor: pointer;
 }
-.vignettes_menu:hover div:first-child {
-  width: 80%;
-}
-.vignettes_menu:hover .check {
-  transform: translateX(0px);
-}
-.vignettes_menu:hover .fa-check-circle {
-  animation: rotate 0.8s forwards;
-}
-.vignettes_menu:hover .nom {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.vignettes_menu:hover > div div p:first-child {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.vignettes_menu div:first-child {
+.vignettes_menu > div:first-child {
   padding: 8px 0px 10px 0px;
   width: 100%;
-  transition: 1s;
+  transition: width 1s;
 }
-.vignettes_menu div:first-child div {
+.vignettes_menu p {
+  margin: 0;
+  font-size: 0.9em;
+}
+.vignettes_menu:hover > div:first-child {
+  width: 80%;
+}
+.vignettes_menu:hover .wrap {
+  max-height: 19px;
+  opacity: 0;
+  transition: opacity 0s;
+}
+.vignettes_menu:hover .nowrap {
+  width: 50%;
+  opacity: 1;
+  transition: opacity 0s, width 1s;
+}
+.vignettes_menu:hover .dwrap {
+  max-height: 18px;
+  opacity: 0;
+  transition: opacity 0s;
+}
+.vignettes_menu:hover .dnowrap {
+  opacity: 1;
+  transition: opacity 0s;
+}
+.vignettes_menu:hover .check {
+  right: 0%;
+}
+.vignettes_menu:hover .fa-check-circle {
+  -webkit-animation: rotate 0.8s forwards;
+  animation: rotate 0.8s forwards;
+}
+
+.nom {
+  width: 70%;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.wrap {
+  opacity: 1;
+  max-height: 50px;
+  transition: opacity 0s 1s, max-height 0s 1s;
+}
+
+.nowrap {
+  position: absolute;
+  top: 8px;
+  left: 0px;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: opacity 0s 1s, width 1s;
+}
+
+.descrPrix {
+  width: 100%;
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
 }
-.vignettes_menu div:first-child div p:first-child {
-  font-size: 0.9em;
-  width: 90%;
+.descrPrix div {
+  width: 75%;
+  position: relative;
+  height: auto;
 }
-.vignettes_menu div:first-child p {
-  margin: 0;
+.descrPrix p {
+  font-size: 0.8em;
+}
+.descrPrix > p {
+  width: 10%;
+  padding-right: 10px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.descr {
+  width: 100%;
   padding-left: 10px;
+}
+
+.dwrap {
+  opacity: 1;
+  max-height: 50px;
+  transition: opacity 0s 1s, max-height 0s 1s;
+}
+
+.dnowrap {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: opacity 0s 1s;
 }
 
 .check {
   height: 100%;
-  width: 60px;
+  width: 20%;
   position: absolute;
   top: 0px;
-  right: 0px;
+  right: -20%;
   border-radius: 0px 10px 10px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #99E2D0;
-  transition: 1s;
-  transform: translateX(60px);
-  transform-origin: right;
-}
-
-.nom, .prix {
-  font-weight: bold;
-  margin: 0;
-}
-
-.nom {
-  width: 70%;
-  font-size: 0.9em;
-}
-
-.prix {
-  padding-right: 10px;
-  font-size: 0.8em;
+  transition: right 1s;
 }
 
 .fa-check-circle {
@@ -596,6 +669,7 @@ footer ul li i {
   text-align: center;
   height: 100%;
   width: 100%;
+  -webkit-animation: disappear 2s linear forwards;
   animation: disappear 2s linear forwards;
   position: absolute;
   background-color: white;
@@ -617,6 +691,7 @@ footer ul li i {
   height: 100px;
   position: relative;
   margin-top: 250px;
+  -webkit-animation: rotate 2s linear forwards;
   animation: rotate 2s linear forwards;
 }
 
@@ -627,6 +702,7 @@ footer ul li i {
   height: 120px;
   position: relative;
   top: -116px;
+  -webkit-animation: rotate2 2s linear forwards;
   animation: rotate2 2s linear forwards;
 }
 
@@ -637,12 +713,29 @@ footer ul li i {
   height: 140px;
   position: relative;
   top: -252px;
+  -webkit-animation: rotate 2s linear forwards;
   animation: rotate 2s linear forwards;
 }
 
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotateZ(-360deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
 @keyframes rotate {
   0% {
     transform: rotateZ(-360deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@-webkit-keyframes rotate2 {
+  0% {
+    transform: rotateZ(360deg);
   }
   100% {
     transform: rotateZ(0deg);
@@ -654,6 +747,18 @@ footer ul li i {
   }
   100% {
     transform: rotateZ(0deg);
+  }
+}
+@-webkit-keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
   }
 }
 @keyframes disappear {
