@@ -123,11 +123,16 @@ button {
   box-shadow: 5px 5px 5px #d2d2d2;
   border: none;
   cursor: pointer;
-  outline:none;
+  outline: none;
 }
 button:hover {
   opacity: 0.8;
   box-shadow: 5px 5px 5px dimgray;
+}
+@media screen and (max-width: 245px) {
+  button {
+    margin-top: 5px;
+  }
 }
 
 /* fonctionnement */
@@ -165,6 +170,11 @@ h3 {
     justify-content: space-around;
   }
 }
+@media screen and (max-width: 245px) {
+  .fonctionnement_menu {
+    height: 350px;
+  }
+}
 .fonctionnement_menu div {
   width: 280px;
   display: flex;
@@ -173,6 +183,11 @@ h3 {
   border-radius: 20px;
   padding: 30px 20px;
   box-shadow: 5px 5px 5px #d2d2d2;
+}
+@media screen and (max-width: 245px) {
+  .fonctionnement_menu div {
+    width: 70%;
+  }
 }
 .fonctionnement_menu div:hover {
   background-color: rgba(147, 86, 220, 0.1);
@@ -233,22 +248,6 @@ h3 {
   }
 }
 
-@keyframes upMove {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-50px);
-  }
-}
-@keyframes changeColor {
-  from {
-    color: black;
-  }
-  to {
-    color: rgba(0, 0, 0, 0);
-  }
-}
 .vignettes {
   width: 90%;
   height: 230px;
@@ -295,6 +294,7 @@ h3 {
   width: 100%;
   height: 250px;
   margin-top: -70px;
+  -o-object-fit: cover;
   object-fit: cover;
   z-index: 2;
 }
@@ -344,9 +344,11 @@ h3 {
   z-index: 2;
 }
 .vignettes .info_restaurants .coeurVide:hover + .cache {
+  -webkit-animation: upMove 2s forwards;
   animation: upMove 2s forwards;
 }
 .vignettes .info_restaurants .coeurVide:hover {
+  -webkit-animation: changeColor 1s forwards;
   animation: changeColor 1s forwards;
 }
 .vignettes .info_restaurants .cache {
@@ -359,6 +361,38 @@ h3 {
   z-index: 1;
 }
 
+@-webkit-keyframes upMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50px);
+  }
+}
+@keyframes upMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50px);
+  }
+}
+@-webkit-keyframes changeColor {
+  from {
+    color: black;
+  }
+  to {
+    color: rgba(0, 0, 0, 0);
+  }
+}
+@keyframes changeColor {
+  from {
+    color: black;
+  }
+  to {
+    color: rgba(0, 0, 0, 0);
+  }
+}
 /* image */
 .photo_pres {
   margin: 0;
@@ -373,12 +407,14 @@ h3 {
   .photo_pres img {
     height: 600px;
     margin-top: -200px;
+    -o-object-fit: cover;
     object-fit: cover;
   }
 }
 
 .photo_pres_note img {
   height: 250px;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 @media screen and (min-width: 1025px) {
@@ -399,6 +435,7 @@ a:first-child figure, a:nth-child(3) figure, a:nth-child(4) figure {
 a:first-child img, a:nth-child(3) img, a:nth-child(4) img {
   height: 230px;
   margin-top: -60px;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 @media screen and (min-width: 1025px) {
@@ -494,6 +531,11 @@ footer ul li i {
   margin-top: 20px;
   margin-bottom: 70px;
 }
+@media screen and (max-width: 245px) {
+  .nom_menu button {
+    width: 70%;
+  }
+}
 
 .vignettes_menu {
   background-color: white;
@@ -504,72 +546,193 @@ footer ul li i {
   overflow: hidden;
   cursor: pointer;
 }
-.vignettes_menu:hover div:first-child {
-  width: 80%;
-}
-.vignettes_menu:hover .check {
-  transform: translateX(0px);
-}
-.vignettes_menu:hover .fa-check-circle {
-  animation: rotate 0.8s forwards;
-}
-.vignettes_menu:hover .nom {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.vignettes_menu:hover > div div p:first-child {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.vignettes_menu div:first-child {
+.vignettes_menu > div:first-child {
   padding: 8px 0px 10px 0px;
   width: 100%;
-  transition: 1s;
+  transition: width 1s;
 }
-.vignettes_menu div:first-child div {
+.vignettes_menu p {
+  margin: 0;
+  font-size: 0.9em;
+}
+.vignettes_menu:hover > div:first-child {
+  width: 80%;
+}
+.vignettes_menu:hover .wrap {
+  max-height: 19px;
+  opacity: 0;
+  transition: opacity 0s;
+}
+.vignettes_menu:hover .nowrap {
+  width: 50%;
+  opacity: 1;
+  transition: opacity 0s, width 1s;
+}
+.vignettes_menu:hover .dwrap {
+  max-height: 18px;
+  opacity: 0;
+  transition: opacity 0s;
+}
+.vignettes_menu:hover .dnowrap {
+  opacity: 1;
+  transition: opacity 0s;
+}
+.vignettes_menu:hover .check {
+  right: 0%;
+}
+.vignettes_menu:hover .fa-check-circle {
+  -webkit-animation: rotate 0.8s forwards;
+  animation: rotate 0.8s forwards;
+}
+
+.vig-1 {
+  -webkit-animation: AppearMenu 0.5s 0.1s both;
+  animation: AppearMenu 0.5s 0.1s both;
+}
+
+.vig-2 {
+  -webkit-animation: AppearMenu 0.5s 0.2s both;
+  animation: AppearMenu 0.5s 0.2s both;
+}
+
+.vig-3 {
+  -webkit-animation: AppearMenu 0.5s 0.3s both;
+  animation: AppearMenu 0.5s 0.3s both;
+}
+
+.vig-4 {
+  -webkit-animation: AppearMenu 0.5s 0.4s both;
+  animation: AppearMenu 0.5s 0.4s both;
+}
+
+.vig-5 {
+  -webkit-animation: AppearMenu 0.5s 0.5s both;
+  animation: AppearMenu 0.5s 0.5s both;
+}
+
+.vig-6 {
+  -webkit-animation: AppearMenu 0.5s 0.6s both;
+  animation: AppearMenu 0.5s 0.6s both;
+}
+
+.vig-7 {
+  -webkit-animation: AppearMenu 0.5s 0.7s both;
+  animation: AppearMenu 0.5s 0.7s both;
+}
+
+.vig-8 {
+  -webkit-animation: AppearMenu 0.5s 0.8s both;
+  animation: AppearMenu 0.5s 0.8s both;
+}
+
+.vig-9 {
+  -webkit-animation: AppearMenu 0.5s 0.9s both;
+  animation: AppearMenu 0.5s 0.9s both;
+}
+
+.vig-10 {
+  -webkit-animation: AppearMenu 0.5s 1s both;
+  animation: AppearMenu 0.5s 1s both;
+}
+
+@-webkit-keyframes AppearMenu {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes AppearMenu {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+.nom {
+  width: 70%;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.wrap {
+  opacity: 1;
+  max-height: 50px;
+  transition: opacity 0s 1s, max-height 0s 1s;
+}
+
+.nowrap {
+  position: absolute;
+  top: 8px;
+  left: 0px;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: opacity 0s 1s, width 1s;
+}
+
+.descrPrix {
+  width: 100%;
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
 }
-.vignettes_menu div:first-child div p:first-child {
-  font-size: 0.9em;
-  width: 90%;
+.descrPrix div {
+  width: 75%;
+  position: relative;
+  height: auto;
 }
-.vignettes_menu div:first-child p {
-  margin: 0;
+.descrPrix p {
+  font-size: 0.8em;
+}
+.descrPrix > p {
+  width: 10%;
+  padding-right: 10px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.descr {
+  width: 100%;
   padding-left: 10px;
+}
+
+.dwrap {
+  opacity: 1;
+  max-height: 50px;
+  transition: opacity 0s 1s, max-height 0s 1s;
+}
+
+.dnowrap {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: opacity 0s 1s;
 }
 
 .check {
   height: 100%;
-  width: 60px;
+  width: 20%;
   position: absolute;
   top: 0px;
-  right: 0px;
+  right: -20%;
   border-radius: 0px 10px 10px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #99E2D0;
-  transition: 1s;
-  transform: translateX(60px);
-  transform-origin: right;
-}
-
-.nom, .prix {
-  font-weight: bold;
-  margin: 0;
-}
-
-.nom {
-  width: 70%;
-  font-size: 0.9em;
-}
-
-.prix {
-  padding-right: 10px;
-  font-size: 0.8em;
+  transition: right 1s;
 }
 
 .fa-check-circle {
@@ -590,6 +753,129 @@ footer ul li i {
   .menu > div {
     width: 30%;
   }
+}
+
+/* Chargement */
+.chargement {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  -webkit-animation: disappear 2s linear forwards;
+  animation: disappear 2s linear forwards;
+  position: absolute;
+  background-color: white;
+  z-index: 4;
+}
+
+.cercle {
+  border: 3px solid;
+  margin: auto;
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.cercle1 {
+  border-top-color: #FF79DA;
+  border-bottom-color: #FF79DA;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin-top: 250px;
+  -webkit-animation: rotate 2s linear forwards;
+  animation: rotate 2s linear forwards;
+}
+
+.cercle2 {
+  border-top-color: #99E2D0;
+  border-bottom-color: #99E2D0;
+  width: 120px;
+  height: 120px;
+  position: relative;
+  top: -116px;
+  -webkit-animation: rotate2 2s linear forwards;
+  animation: rotate2 2s linear forwards;
+}
+
+.cercle3 {
+  border-top-color: #9356DC;
+  border-bottom-color: #9356DC;
+  width: 140px;
+  height: 140px;
+  position: relative;
+  top: -252px;
+  -webkit-animation: rotate 2s linear forwards;
+  animation: rotate 2s linear forwards;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotateZ(-360deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotateZ(-360deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@-webkit-keyframes rotate2 {
+  0% {
+    transform: rotateZ(360deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@keyframes rotate2 {
+  0% {
+    transform: rotateZ(360deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@-webkit-keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  99% {
+    z-index: 4;
+  }
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  99% {
+    z-index: 4;
+  }
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+#texte {
+  color: #9356DC;
+  font-family: Arial;
+  font-size: 10px;
+  position: relative;
+  top: -335px;
 }
 
 /*# sourceMappingURL=style.css.map */
