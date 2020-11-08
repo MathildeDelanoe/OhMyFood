@@ -18,11 +18,11 @@ $tertiary:#99E2D0;
 {
     font-family: 'Shrikhand';
     src: url('../shrikhand/Shrikhand-Regular.otf') format('opentype');
-    
 }
 
 $breakpoints:
 (
+  mobileSmall:245px,
   mobile:415px,
   desktop:1025px
 );
@@ -43,6 +43,13 @@ $breakpoints:
 
 @mixin tablets-only {
   @media screen and (min-width: map-get($breakpoints, mobile)) and (max-width: map-get($breakpoints, desktop))
+  {
+      @content;
+  }
+}
+
+@mixin mobileSmall {
+  @media screen and (max-width: map-get($breakpoints, mobileSmall))
   {
       @content;
   }
@@ -175,10 +182,15 @@ button
   box-shadow:5px 5px 5px rgb(210,210,210);
   border:none;
   cursor: pointer;
+  outline:none;
   &:hover
   {
     opacity:0.8;
     box-shadow:5px 5px 5px rgb(105,105,105);
+  }
+  @include mobileSmall
+  {
+    margin-top:5px;
   }
 }
 
@@ -216,6 +228,10 @@ h3
     flex-direction:row;
     justify-content: space-around;
   }
+  @include mobileSmall
+  {
+    height:350px;
+  }
   div
   {
     width:280px;
@@ -225,6 +241,10 @@ h3
     border-radius: 20px;
     padding:30px 20px;
     box-shadow: 5px 5px 5px rgb(210,210,210);
+    @include mobileSmall
+    {
+      width:70%;
+    }
     &:hover
     {
       background-color:rgba(147,86,220,0.1);
@@ -614,6 +634,10 @@ footer
     width:40%;
     margin-top:20px;
     margin-bottom:70px;
+    @include mobileSmall
+    {
+      width:70%;
+    }
   }
 }
 
@@ -675,6 +699,37 @@ footer
       -webkit-animation: rotate 0.8s forwards;
               animation: rotate 0.8s forwards;
     }
+  }
+}
+
+@for $i from 1 through 10
+{
+  .vig-#{$i}
+  {
+    -webkit-animation:AppearMenu 0.5s $i*0.1s both;
+            animation:AppearMenu 0.5s $i*0.1s both;
+  }
+}
+
+@-webkit-keyframes AppearMenu {
+  0% {
+    transform: translateY(50px);
+    opacity:0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity:1;
+  }
+}
+
+@keyframes AppearMenu {
+  0% {
+    transform: translateY(50px);
+    opacity:0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity:1;
   }
 }
 
@@ -792,3 +847,131 @@ footer
   }
 }
 
+/* Chargement */
+.chargement 
+{
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  -webkit-animation: disappear 2s linear forwards;
+          animation: disappear 2s linear forwards;
+  position:absolute;
+  background-color: white;
+  z-index:4;
+}
+.cercle
+{
+  border: 3px solid;
+  margin: auto;
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.cercle1 
+{
+  border-top-color: $secondary;
+  border-bottom-color: $secondary;
+  width: 100px;
+  height:100px;
+  position:relative;
+  margin-top: 250px;
+  -webkit-animation: rotate 2s linear forwards;
+          animation: rotate 2s linear forwards;
+}
+
+.cercle2 
+{
+  border-top-color: $tertiary;
+  border-bottom-color:$tertiary;
+  width: 120px;
+  height: 120px;
+  position: relative;
+  top:-116px;
+  -webkit-animation: rotate2 2s linear forwards;
+          animation: rotate2 2s linear forwards;
+}
+
+.cercle3 
+{
+  border-top-color: $primary;
+  border-bottom-color: $primary;
+  width: 140px;
+  height: 140px;
+  position: relative;
+  top:-252px;
+  -webkit-animation: rotate 2s linear forwards;
+          animation: rotate 2s linear forwards;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotateZ(-360deg)
+  }
+  100% {
+    transform: rotateZ(0deg)
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotateZ(-360deg)
+  }
+  100% {
+    transform: rotateZ(0deg)
+  }
+}
+@-webkit-keyframes rotate2 {
+  0% {
+    transform: rotateZ(360deg)
+  }
+  100% {
+    transform: rotateZ(0deg)
+  }
+}
+@keyframes rotate2 {
+  0% {
+    transform: rotateZ(360deg)
+  }
+  100% {
+    transform: rotateZ(0deg)
+  }
+}
+@-webkit-keyframes disappear {
+  0%{
+    opacity: 1;
+  }
+  75%{
+    opacity: 1;
+  }
+  99%{
+    z-index:4;
+  }
+  100%{
+    opacity: 0;
+    z-index:-1;
+  }
+}
+@keyframes disappear {
+  0%{
+    opacity: 1;
+  }
+  75%{
+    opacity: 1;
+  }
+  99%{
+    z-index:4;
+  }
+  100%{
+    opacity: 0;
+    z-index:-1;
+  }
+}
+
+#texte 
+{
+  color: $primary;
+  font-family: Arial;
+  font-size: 10px;
+  position: relative;
+  top: -335px;
+}
