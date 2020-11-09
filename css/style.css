@@ -581,8 +581,8 @@ footer ul li i {
   right: 0%;
 }
 .vignettes_menu:hover .fa-check-circle {
-  -webkit-animation: rotate 0.8s forwards;
-  animation: rotate 0.8s forwards;
+  -webkit-animation: rotationHoraire 0.5s 0.2s forwards;
+  animation: rotationHoraire 0.5s 0.2s forwards;
 }
 
 .vig-1 {
@@ -782,8 +782,8 @@ footer ul li i {
   height: 100px;
   position: relative;
   margin-top: 250px;
-  -webkit-animation: rotate 2s linear forwards;
-  animation: rotate 2s linear forwards;
+  -webkit-animation: rotationHoraire 2s linear forwards;
+  animation: rotationHoraire 2s linear forwards;
 }
 
 .cercle2 {
@@ -793,8 +793,8 @@ footer ul li i {
   height: 120px;
   position: relative;
   top: -116px;
-  -webkit-animation: rotate2 2s linear forwards;
-  animation: rotate2 2s linear forwards;
+  -webkit-animation: rotationAntiHoraire 2s linear forwards;
+  animation: rotationAntiHoraire 2s linear forwards;
 }
 
 .cercle3 {
@@ -804,11 +804,11 @@ footer ul li i {
   height: 140px;
   position: relative;
   top: -252px;
-  -webkit-animation: rotate 2s linear forwards;
-  animation: rotate 2s linear forwards;
+  -webkit-animation: rotationHoraire 2s linear forwards;
+  animation: rotationHoraire 2s linear forwards;
 }
 
-@-webkit-keyframes rotate {
+@-webkit-keyframes rotationHoraire {
   0% {
     transform: rotateZ(-360deg);
   }
@@ -816,7 +816,7 @@ footer ul li i {
     transform: rotateZ(0deg);
   }
 }
-@keyframes rotate {
+@keyframes rotationHoraire {
   0% {
     transform: rotateZ(-360deg);
   }
@@ -824,7 +824,7 @@ footer ul li i {
     transform: rotateZ(0deg);
   }
 }
-@-webkit-keyframes rotate2 {
+@-webkit-keyframes rotationAntiHoraire {
   0% {
     transform: rotateZ(360deg);
   }
@@ -832,7 +832,7 @@ footer ul li i {
     transform: rotateZ(0deg);
   }
 }
-@keyframes rotate2 {
+@keyframes rotationAntiHoraire {
   0% {
     transform: rotateZ(360deg);
   }
